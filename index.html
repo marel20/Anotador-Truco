@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <title>Anotador Truco</title>
+</head>
+<body>
+    <div id="pantalla1" class="contenedor visible">
+        <div class="equipo"> <br> <br> <br>
+            <input type="text" placeholder="Equipo 1" value="" id="equipo1"> <br> <br> <br>
+            <input type="text" placeholder="Equipo 2" value="" id="equipo2">
+        </div>
+        <div class="puntos">
+            <input type="button"  value="a 24 pts" id="a24">
+            <input type="button"  value="a 30 pts" id="a30">
+        </div>
+        <div class="bIniciar">
+            <input type="button" value="Iniciar" id="iniciar">
+        </div>
+    </div>
+    <div id="pantalla2" class="contenedor oculto">
+        <div class="bSumar">
+            <input type="button"  value="+" id="suma1">
+            <span id="eq1"><u>Equipo 1</u></span>
+            <span id="eq2"><u>Equipo 2</u></span>
+            <input type="button"  value="+" id="suma2">
+        </div> <hr> 
+        <div id="contador">
+            <div class="p1">
+                <img src="img/0.png" id="e11">
+                <img src="img/0.png" id="e12">
+                <img src="img/0.png" id="e13">
+            </div>
+            <div class="p2">
+                <img src="img/0.png" id="e21">
+                <img src="img/0.png" id="e22">
+                <img src="img/0.png" id="e23">
+            </div>
+            <hr>
+            <div class="p1">
+                <img src="img/0.png" id="e14">
+                <img src="img/0.png" id="e15">
+                <img src="img/0.png" id="e16">
+            </div>
+            <div class="p2">
+                <img src="img/0.png" id="e24">
+                <img src="img/0.png" id="e25">
+                <img src="img/0.png" id="e26">
+            </div>
+        </div>
+        <div class="puntosMax">
+            <span id="max"></span> <br>
+        </div>
+        <div class="bRestar">
+            <input type="button" value="-" id="resta1">
+            <span id="canPuntos1">00</span>
+            <input type="button" value="Fin" id="finalizar">
+            <span id="canPuntos2">00</span>
+            <input type="button" value="-" id="resta2">
+        </div>
+    </div>
+
+    <script src="js/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+
+        punMax = 30
+
+
+        $('#iniciar').on('click', fnPasaAPantalla2)
+        $('#finalizar').on('click', fnPasaAPantalla1)
+        $('#a24').on('click', fnPartidoA24)
+        $('#a30').on('click', fnPartidoA30)
+        $('#suma1').on('click', fnSumar1)
+        $('#resta1').on('click', fnRestar1)
+        $('#suma2').on('click', fnSumar2)
+        $('#resta2').on('click', fnRestar2)
+
+
+
+        function fnPasaAPantalla2(){
+            console.log('entramos a iniciar');
+            $('#pantalla1').removeClass('visible').addClass('oculto');
+            $('#pantalla2').removeClass('oculto').addClass('visible');
+            $('#eq1').text($('#equipo1').val());
+            $('#eq2').text($('#equipo2').val());
+        }
+
+        function fnPasaAPantalla1(){
+            console.log('entramos a finalizar');
+            $('#pantalla1').removeClass('oculto').addClass('visible');
+            $('#pantalla2').removeClass('visible').addClass('oculto');
+            $('#eq1').html("");
+            $('#eq2').html("");
+            $('#equipo1').val("");
+            $('#equipo2').val("");
+            $('#canPuntos1').html(00);
+            $('#canPuntos2').html(00);
+            $('#max').html("");
+            $('img').attr('src', 'img/0.png')
+        }
+
+        function fnPartidoA24(){
+            console.log('partido a 24');
+            $('#max').html('A 24');
+            punMax = 24;
+        }
+
+        function fnPartidoA30(){
+            console.log('partido a 30');
+            $('#max').html('A 30')
+            punMax = 30;
+        }
+
+        function fnSumar1(){
+            console.log('entramos a sumar1');
+            valor1 = $('#canPuntos1').text();
+            valor1 = parseInt(valor1);
+            if (valor1<punMax) {
+                valor1++;
+            }
+            $('#canPuntos1').text(valor1);
+            pintarFosforo(1)
+        }
+            
+        function fnSumar2() {
+            console.log('entramos a sumar2')
+            valor2 = $('#canPuntos2').text();
+            valor2 = parseInt(valor2);
+                
+            if (valor2<punMax) {
+                 valor2++;
+            }
+            $('#canPuntos2').text(valor2);
+            pintarFosforo(2)
+        }
+
+        function fnRestar1(){
+            console.log('entramos a restar1');
+            valor1 = $('#canPuntos1').text();
+            valor1 = parseInt(valor1);
+
+            if (valor1>0) {
+                valor1--;
+            }
+            $('#canPuntos1').text(valor1);
+            pintarFosforo(1)
+        }
+
+        function fnRestar2(){
+            console.log('entramos a restar2');
+            valor2 = $('#canPuntos2').text();
+            valor2 = parseInt(valor2);
+
+            if (valor2>0) {
+                valor2--;
+            }
+            $('#canPuntos2').text(valor2);
+            pintarFosforo(2)
+        }
+
+        function pintarFosforo (equipo) {
+          console.log('Entramos a pintar fosforos');
+          pintar = parseInt($('#canPuntos'+equipo).text());
+
+          for (i=1 ; i<=6; i++) {
+              if (punMax==24 && i==3) {
+                  if (pintar>=2) {
+                      $('#e'+equipo+i).attr('src', 'img/2.png');
+                      pintar = pintar-2;
+                  } else {
+                      $('#e'+equipo+i).attr('src', 'img/'+pintar+'.png');
+                      pintar=0;
+                  }
+              } else {
+                  if (pintar>=5) {
+                      $('#e'+equipo+i).attr('src', 'img/5.png');
+                      pintar=pintar-5;
+                  } else {
+                      $('#e'+equipo+i).attr('src', 'img/'+pintar+'.png');
+                      pintar=0;
+                  }
+              }
+          }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+        })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+
+
+
+
+</body>
+</html>
