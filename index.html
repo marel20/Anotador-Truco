@@ -5,65 +5,69 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/mdb.min.css">
     <title>Anotador Truco</title>
 </head>
 <body>
-    <div id="pantalla1" class="contenedor visible">
-        <div class="equipo"> <br> <br> <br>
-            <input type="text" placeholder="Equipo 1" value="" id="equipo1"> <br> <br> <br>
-            <input type="text" placeholder="Equipo 2" value="" id="equipo2">
-        </div>
-        <div class="puntos">
-            <input type="button"  value="a 24 pts" id="a24">
-            <input type="button"  value="a 30 pts" id="a30">
-        </div>
-        <div class="bIniciar">
-            <input type="button" value="Iniciar" id="iniciar">
-        </div>
-    </div>
-    <div id="pantalla2" class="contenedor oculto">
-        <div class="bSumar">
-            <input type="button"  value="+" id="suma1">
-            <span id="eq1"><u>Equipo 1</u></span>
-            <span id="eq2"><u>Equipo 2</u></span>
-            <input type="button"  value="+" id="suma2">
-        </div> <hr> 
-        <div id="contador">
-            <div class="p1">
-                <img src="img/0.png" id="e11">
-                <img src="img/0.png" id="e12">
-                <img src="img/0.png" id="e13">
+    <div class="container-fluid">
+        <div id="pantalla1" class="contenedor visible">
+            <div class="equipo"> <br> <br> <br>
+                <input type="text" placeholder="Equipo 1" value="" id="equipo1"> <br> <br> <br>
+                <input type="text" placeholder="Equipo 2" value="" id="equipo2">
             </div>
-            <div class="p2">
-                <img src="img/0.png" id="e21">
-                <img src="img/0.png" id="e22">
-                <img src="img/0.png" id="e23">
+            <div class="puntos">
+                <input type="button"  value="a 24 pts" id="a24">
+                <input type="button"  value="a 30 pts" id="a30">
             </div>
-            <hr>
-            <div class="p1">
-                <img src="img/0.png" id="e14">
-                <img src="img/0.png" id="e15">
-                <img src="img/0.png" id="e16">
-            </div>
-            <div class="p2">
-                <img src="img/0.png" id="e24">
-                <img src="img/0.png" id="e25">
-                <img src="img/0.png" id="e26">
+            <div class="bIniciar">
+                <input type="button" value="Iniciar" id="iniciar">
             </div>
         </div>
-        <div class="puntosMax">
-            <span id="max"></span> <br>
-        </div>
-        <div class="bRestar">
-            <input type="button" value="-" id="resta1">
-            <span id="canPuntos1">00</span>
-            <input type="button" value="Fin" id="finalizar">
-            <span id="canPuntos2">00</span>
-            <input type="button" value="-" id="resta2">
+        <div id="pantalla2" class="contenedor oculto">
+            <div class="bSumar">
+                <input type="button"  value="+" id="suma1">
+                <span id="eq1"><u>Equipo 1</u></span>
+                <span id="eq2"><u>Equipo 2</u></span>
+                <input type="button"  value="+" id="suma2">
+            </div> <hr> 
+            <div id="contador">
+                <div class="p1">
+                    <img src="img/0.png" id="e11">
+                    <img src="img/0.png" id="e12">
+                    <img src="img/0.png" id="e13">
+                </div>
+                <div class="p2">
+                    <img src="img/0.png" id="e21">
+                    <img src="img/0.png" id="e22">
+                    <img src="img/0.png" id="e23">
+                </div>
+                <hr>
+                <div class="p1">
+                    <img src="img/0.png" id="e14">
+                    <img src="img/0.png" id="e15">
+                    <img src="img/0.png" id="e16">
+                </div>
+                <div class="p2">
+                    <img src="img/0.png" id="e24">
+                    <img src="img/0.png" id="e25">
+                    <img src="img/0.png" id="e26">
+                </div>
+            </div>
+            <div class="puntosMax">
+                <span id="max"></span> <br>
+            </div>
+            <div class="bRestar">
+                <input type="button" value="-" id="resta1">
+                <span id="canPuntos1">00</span>
+                <input type="button" value="Fin" id="finalizar">
+                <span id="canPuntos2">00</span>
+                <input type="button" value="-" id="resta2">
+            </div>
         </div>
     </div>
 
     <script src="js/jquery.min.js"></script>
+    <script src="js/mdb.min.js"></script>
     <script>
         $(document).ready(function(){
 
